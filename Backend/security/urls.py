@@ -22,8 +22,8 @@ urlpatterns = [
     path('add_nonresident_campusentry/',views.AddNonResidentCampusEntryView.as_view()),
     path('add_nonresident_campusexit/',views.AddNonResidentCampusExitView.as_view()),
     path('nonresident_campusentries/',views.GetNonResidentsCampusEntriesView.as_view()),
-    path('all_nonresident_campusentries/',views.GetallNonResidentsCampusEntriesView.as_view())
-    
+    path('all_nonresident_campusentries/',views.GetallNonResidentsCampusEntriesView.as_view()),
+    path('profile/',views.SecurityDataView.as_view())
 
     # path('founditem/',views.FounditemView.as_view())
 ]

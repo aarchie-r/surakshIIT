@@ -34,11 +34,19 @@ import HallEntryTable from "views/Security/ViewHallEntry";
 import AddHallEntry from "views/AddHallEntry";
 import AllHallEntryTable from "views/Security/AllhallEntries";
 
+import SecProfile from "views/Security/securityProfile";
+
 
 
 var routes = [
  
-  
+  {
+    path: "/index",
+    name: "Security Profile",
+    icon: "ni ni-single-02 text-yellow",
+    component: SecProfile,
+    layout: "/admin",
+  },
   {
     path: "/index",
     name: "User Profile",

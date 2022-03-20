@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 import security
-from .serializers import CampusExitSerializer, HallEntrySerializer, LostItemSerializer,AddFoundItemSerializer,FoundItemSerializer, NonResidentEntrySerializer
+from .serializers import CampusExitSerializer, HallEntrySerializer, LostItemSerializer,AddFoundItemSerializer,FoundItemSerializer, NonResidentEntrySerializer, SecurityDataSerializer
 from lost_found.models import Lost_item,Found_item
 from hall_movement.models import Entry
 from campus_movement.models import Exit, Non_Resident_Entry
@@ -66,7 +66,7 @@ class FounditemView(APIView):
 
     
 class AddFoundItemView(APIView):
-    def post(self,request,*args,**kwargs):
+    def post(self,request,args,*kwargs):
         
         security = IsloggedIN(request)
 
@@ -300,4 +300,14 @@ class AddNonResidentCampusExitView(APIView):
             return Response(status= status.HTTP_401_UNAUTHORIZED)
 
 
-
+class SecurityDataView(APIView):
+    def get(self,request):
+        try:
+            user= IsloggedIN(request)
+            if user:
+                userdata= SecurityDataSerializer(user)
+                return Response(userdata.data,status=status.HTTP_200_OK)
+            else:
+                return Response(status= status.HTTP_404_NOT_FOUND)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)

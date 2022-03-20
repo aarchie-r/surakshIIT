@@ -4,6 +4,7 @@ from rest_framework import serializers
 from hall_movement.models import Entry
 from campus_movement.models import Exit,Non_Resident_Entry
 from user.models import CampusJunta
+from .models import Security
 
 
 
@@ -67,3 +68,9 @@ class NonResidentEntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Non_Resident_Entry
         fields=('__all__')
+
+class SecurityDataSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Security
+        fields=("name","email","phone","uid","gender","dp")
