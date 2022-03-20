@@ -129,8 +129,8 @@ const dispatch = useDispatch();
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder="Email"
-                    type="email"
+                    placeholder="UID"
+                    type="text"
                     autoComplete="new-email"
                     onChange={(event) => {
                       event.preventDefault();
