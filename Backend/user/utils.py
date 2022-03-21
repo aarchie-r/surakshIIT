@@ -34,3 +34,10 @@ def MAKE_PASSWORD(password):
 
 def CHECK_PASSWORD(password, hash):
     return bcrypt.checkpw(password.encode(), hash.encode())
+
+def isRegistered(request):
+    try:
+        user = CampusJunta.objects.get(uid=request.data["uid"])
+        return user
+    except:
+        return None

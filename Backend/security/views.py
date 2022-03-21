@@ -66,7 +66,7 @@ class FounditemView(APIView):
 
     
 class AddFoundItemView(APIView):
-    def post(self,request,args,*kwargs):
+    def post(self,request):
         
         security = IsloggedIN(request)
 
