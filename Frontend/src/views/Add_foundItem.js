@@ -54,18 +54,22 @@ const AddFoundItem = () =>{
       details : Details
     }
 
-    console.log(item)
+    if(Name=="" | PersonFound=="") {
+      alert(("Fill in the required details"))
+    }
+    else{
 
-    axios.defaults.withCredentials = true;
-    axios.defaults.xsrfCookieName = 'csrftoken'
-    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+      axios.defaults.withCredentials = true;
+      axios.defaults.xsrfCookieName = 'csrftoken'
+      axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
-    await axios 
-      .post(Backend_URL,form_data,{headers: {
-        'content-type': 'multipart/form-data'
-      }})
-      .then(()=>alert("item Added"))
-      .catch(()=>alert("An error ocurred"))
+      await axios 
+        .post(Backend_URL,form_data,{headers: {
+          'content-type': 'multipart/form-data'
+        }})
+        .then(()=>alert("item Added"))
+        .catch(()=>alert("An error ocurred"))
+    }
   }
 
   return (
@@ -79,7 +83,7 @@ const AddFoundItem = () =>{
                   <CardText>
                     <h3>Give some details-</h3>
                   </CardText>
-                  <Form>
+                  
                     <Col className="order-xl-1" xl="10">
                       <Card className="bg-secondary shadow">
                           <CardHeader className="bg-white border-0">
@@ -202,7 +206,7 @@ const AddFoundItem = () =>{
                         </CardBody>
                       </Card>
                     </Col>    
-                  </Form>
+                  
                   <Button color="primary" onClick={handleSubmit} size="normal" className="mx-3 my-3">Submit</Button>
                 </CardBody>
             </Card>

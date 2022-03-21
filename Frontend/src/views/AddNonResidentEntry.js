@@ -60,14 +60,19 @@ import {
           id_document: id_document,
           id_number: id_number
       }
-      axios.defaults.withCredentials = true;
-      axios.defaults.xsrfCookieName = 'csrftoken'
-      axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-      
-      await axios 
-      .post(BACKEND_URL,data)
-      .then(()=>alert("Entry Data Submitted"))
-      .catch(()=>alert("Misleading UID given"))
+      if(name=="" | concerned=="") {
+        alert(("Fill in the required details"))
+      }
+      else{
+        axios.defaults.withCredentials = true;
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+        
+        await axios 
+        .post(BACKEND_URL,data)
+        .then(()=>alert("Entry Data Submitted"))
+        .catch(()=>alert("Misleading UID given"))
+    }
   }
 
     return (

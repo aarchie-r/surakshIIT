@@ -48,18 +48,22 @@ const AddLostItem = () =>{
     form_data.append('details',Details);
     form_data.append('image',Image)
 
+    if(Name=="" | Owner=="") {
+      alert(("Fill in the required details"))
+    }
+    else{
 
+      axios.defaults.withCredentials = true;
+      axios.defaults.xsrfCookieName = 'csrftoken'
+      axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
-    axios.defaults.withCredentials = true;
-    axios.defaults.xsrfCookieName = 'csrftoken'
-    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-
-    await axios 
-      .post(Backend_URL,form_data,{headers: {
-        'content-type': 'multipart/form-data'
-      }})
-      .then(()=>alert("item Added"))
-      .catch((err)=>alert(err))
+      await axios 
+        .post(Backend_URL,form_data,{headers: {
+          'content-type': 'multipart/form-data'
+        }})
+        .then(()=>alert("item Added"))
+        .catch((err)=>alert(err))
+    }
   }
 
   return (

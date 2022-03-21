@@ -48,20 +48,25 @@ import {
           destination: destination,
           
       }
-      axios.defaults.withCredentials = true;
-      axios.defaults.xsrfCookieName = 'csrftoken'
-      axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-      
-      await axios 
-      .post(BACKEND_URL,data)
-      .then(()=>{
-        alert("Exit Data Submitted")
-        ;
-      })
-      .catch(()=>alert("Misleading UID given"))
-      console.log("kjdb")
-      setUID("");
+      if(uid=="" | destination=="") {
+        alert(("Fill in the required details"))
+      }
+      else{
+        axios.defaults.withCredentials = true;
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+        
+        await axios 
+        .post(BACKEND_URL,data)
+        .then(()=>{
+          alert("Exit Data Submitted")
+          ;
+        })
+        .catch(()=>alert("Misleading UID given"))
+        console.log("kjdb")
+        setUID("");
         setDestination("")
+    }
   }
 
 
