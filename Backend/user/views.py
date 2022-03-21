@@ -1,4 +1,5 @@
 from http.client import HTTPResponse
+from urllib import response
 """ from msilib.schema import Class """
 from unicodedata import name
 from django.shortcuts import redirect, render, reverse
@@ -31,84 +32,39 @@ class UserDataView(APIView):
 def main(request):
     return render(request, "main.html")
 
-class SignUp(APIView):
-    def post(self, request, *args, **kwargs):
-        try:
-            uid = request.data.get("uid", "")
-            password = request.data.get("password","")
-            myuser = User.objects.create_user(username = uid, password=password)
-            myuser.first_name = "fname"
-            myuser.last_name = "lname"
-            myuser.save()
-            return Response(status=status.HTTP_200_OK)
-        except:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
 # Create your views here.
 class Register(APIView):
     def post(self,request,*args, **kwargs):
-        try:
-            name = request.data.get("name","")
-            uid = request.data.get("uid","")
-            email = request.data.get("email","")
-            phone = request.data.get("phone","")
-            room_no = request.data.get("room_no","")
-            address = request.data.get("address","")
-            gender = request.data.get("gender","")
-            password = request.data.get("password","")
-            re_password = request.data.get("re_password","")
-            dp = request.data.get("dp","")
-            register = CampusJunta(name=name,uid=uid,email=email,phone=phone,room_no=room_no,address=address,gender=gender,password=password,dp=dp)
-            register.save()
-            if password == re_password:
-                myuser = User.objects.create_user(username = name,email = email, password=password)
-                myuser.save()
-                return Response(status=status.HTTP_200_OK)
-            else:
-                return Response(status=status.HTTP_401_UNAUTHORIZED)
-        except:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        if isRegistered(request) is None:
 
-""" def register(request):
-    if request.method == "POST":
-        try:
-            name = request.POST.get('name')
-            uid = request.POST.get('uid')
-            email = request.POST.get('email')
-            phone = request.POST.get('phone')
-            room_no = request.POST.get('room_no')
-            address = request.POST.get('address')
-            gender = request.POST.get('gender')
-            password = request.POST.get('password')
-            re_password = request.POST.get('re_password')
-            dp = request.POST.get('dp')
-            register = CampusJunta(name=name,uid=uid,email=email,phone=phone,room_no=room_no,address=address,gender=gender,password=password,dp=dp)
-            register.save()
-            if password == re_password:
-                myuser = User.objects.create_user(username = name,email = email, password=password)
-                myuser.save()
-            else:
-                messages.success(request, "Password did not match Please try again")
-            messages.success(request, 'You are successfully Registered!')
-            return redirect('login')
-        except:
-            messages.success(request, "Password did not match Please try again")
-    return render(request,'register.html')
- """
+            try:
+                name = request.data.get("name","")
+                uid = request.data.get("uid","")
+                email = request.data.get("email","")
+                phone = request.data.get("phone","")
+                room_no = request.data.get("room_no","")
+                address = request.data.get("address","")
+                gender = request.data.get("gender","")
+                password = request.data.get("password","")
+                re_password = request.data.get("re_password","")
+                dp = request.data.get("dp","")
+                register = CampusJunta(name=name,uid=uid,email=email,phone=phone,room_no=room_no,address=address,gender=gender,password=password,dp=dp)
+                register.save()
+                if password == re_password:
+                    myuser = User.objects.create_user(username = name,email = email, password=password)
+                    myuser.save()
+                    return Response(status=status.HTTP_200_OK)
+                else:
+                    return Response(status=status.HTTP_401_UNAUTHORIZED)
+            except:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"message":"This UID is already registered with us"},status=status.HTTP_400_BAD_REQUEST)
 
-""" def handleSignup(request):
-    if request.method == "POST":
-        signupusername = request.POST['signupusername']
-        signupemail = request.POST['signupemail']
-        signuppassword = request.POST['signuppassword']
 
-        myuser = User.objects.create_user(username = signupusername,email = signupemail, password=signuppassword)
-        myuser.save()
 
-        messages.success(request, "Successfully created")
-        return redirect('login')
-    return render(request,'signup.html')
- """
 
 
 class Login(APIView):
@@ -127,42 +83,18 @@ class Login(APIView):
                     request.session.modified = True
                     return Response(status=status.HTTP_200_OK)
                 else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
+                    return Response({"message":"Incorrect Password"},status=status.HTTP_401_UNAUTHORIZED)
 
         except:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-
-""" def handleLogin(request):
-    if request.method == 'POST':
-        loginusername = request.POST['loginusername']
-        loginpassword = request.POST['loginpassword']
-        
-        myuser = authenticate(username= loginusername, password =loginpassword)
-        if myuser is not None:
-            login(request, myuser)
-            messages.success(request, "Successfully Logged In")
-            return redirect('register')
-        else:
-            messages.success(request, "Invalid Credentials Please try again")
-            return redirect('login')
-    return render(request,'login.html')
- """
+            return Response({"message":"Given UID is not registered with us"},status=status.HTTP_401_UNAUTHORIZED)
 
 
 
 
-""" def handleLogout(request):
-    if request.method == "POST":
-        logout(request)
-        messages.success(request,"Successfully Loged Out")
-        return redirect('login')
-    else:
-        logout(request)
-        messages.success(request,"Successfully Loged Out")
-        return redirect('login')
-    return redirect(request,'login')
-  """   
+
+
+
+   
 class Logout(APIView):
     def post(self, request):
         if IsloggedIN(request) is not None:

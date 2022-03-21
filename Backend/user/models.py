@@ -16,7 +16,7 @@ class CampusJunta(models.Model):
     address = models.CharField(max_length=256)
     gender = models.CharField(max_length=20,choices=gender_choices)
     password = models.CharField(max_length=100)
-    dp = models.ImageField(upload_to = "media/",blank=True)
+    dp = models.ImageField(upload_to = "profile/",blank=True)
 
     def __str__(self):
         return self.uid

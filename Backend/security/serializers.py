@@ -11,11 +11,19 @@ from .models import Security
 from lost_found.models import Lost_item,Found_item
 
 class LostItemSerializer(serializers.ModelSerializer):
+    owner = serializers.SlugRelatedField(
+        slug_field='name',
+        queryset = CampusJunta.objects.all()
+    )
     class Meta:
         model = Lost_item
         fields=('__all__')
 
 class FoundItemSerializer(serializers.ModelSerializer):
+    who_found = serializers.SlugRelatedField(
+        slug_field= 'name',
+        queryset = CampusJunta.objects.all()
+    )
     class Meta:
         model = Found_item
         fields=('__all__')
