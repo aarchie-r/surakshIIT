@@ -1,4 +1,5 @@
 # from django import http
+from datetime import datetime
 from http.client import HTTPResponse
 from django.http.response import HttpResponse
 # from django.shortcuts import render
@@ -51,7 +52,7 @@ class AddLostItemView(APIView):
                 details=request.data["details"],
                 last_seen = request.data["last_seen"],
                 image= request.data["image"],
-                lost_time = request.data["lost_time"],
+                lost_time = datetime.now(),
                 item_color = request.data["item_color"],
                 owner = CampusJunta.objects.get(uid=request.data["owner"]),
                 if_found= False

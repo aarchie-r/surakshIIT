@@ -2,10 +2,11 @@ import { sessionService } from "redux-react-session";
 
 
 
-export const login = (uid) => async ()=>{
+export const login = (uid,security) => async ()=>{
     try {
         const response = {
-            uid:uid
+            uid:uid,
+            isSecurity: security
         };
 
 

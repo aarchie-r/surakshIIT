@@ -41,7 +41,7 @@ const Admin = (props) => {
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (session.user.uid=="201055" && prop.layout=="/admin") {
+      if (session.user.isSecurity==true && prop.layout=="/admin") {
         console.log("yaha aaya")
         return (
           <Route
@@ -51,7 +51,7 @@ const Admin = (props) => {
           />
         );
       } else { 
-        if(session.user.uid!="201055" && prop.layout=="/user")
+        if(session.user.isSecurity==false && prop.layout=="/user")
         return (
           <Route
             path={prop.layout + prop.path}
@@ -79,6 +79,7 @@ const Admin = (props) => {
   if(!session.authenticated){
     return <Redirect to="/auth/login" />
   }
+  
 
   return (
     <>
@@ -86,7 +87,7 @@ const Admin = (props) => {
         {...props}
         routes={routes}
         logo={{
-          innerLink: session.user.uid=="201055"?"/admin/index":"/user/index",
+          innerLink: session.user.isSecurity==true?"/admin/index":"/user/index",
           imgSrc: require("../assets/img/brand/argon-react.png").default,
           imgAlt: "...",
         }}
@@ -98,7 +99,7 @@ const Admin = (props) => {
         />
         <Switch>
           {getRoutes(routes)}
-          <Redirect from="*" to={session.user.uid=="201055"?"/admin/index":"/user/index"} />
+          <Redirect from="*" to={session.user.isSecurity==true?"/admin/index":"/user/index"} />
         </Switch>
         <Container fluid>
           <AdminFooter />

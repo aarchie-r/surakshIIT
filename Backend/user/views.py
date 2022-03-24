@@ -50,7 +50,8 @@ class Register(APIView):
                 password = request.data.get("password","")
                 re_password = request.data.get("re_password","")
                 dp = request.data.get("dp","")
-                register = CampusJunta(name=name,uid=uid,email=email,phone=phone,room_no=room_no,address=address,gender=gender,password=password,dp=dp)
+                isSecurity = False
+                register = CampusJunta(name=name,uid=uid,email=email,phone=phone,room_no=room_no,address=address,gender=gender,password=password,dp=dp,isSecurity = isSecurity)
                 register.save()
                 if password == re_password:
                     myuser = User.objects.create_user(username = name,email = email, password=password)

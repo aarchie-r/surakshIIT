@@ -15,6 +15,8 @@ import {
 
 import axios from "axios";
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 
 const BACKEND_URL = "http://127.0.0.1:8000/register/"
@@ -32,6 +34,8 @@ const Register = () => {
   const [re_password, setREPASSWORD] = useState("");
   const [dp, setDP] = useState("");
 
+  
+  const history = useHistory();
   const handleSubmit = async () => {
 
 
@@ -74,7 +78,11 @@ const Register = () => {
       .post(BACKEND_URL,form_data,{headers: {
         'content-type': 'multipart/form-data'
       }})
-      .then((response)=>alert("Registered Successfuly!!"))
+      .then((response)=>{
+        alert("Registered Successfuly!!");
+        history.push('/login')
+      })
+        
       .catch((err)=>alert((err.response.data.message)))
     }
   }

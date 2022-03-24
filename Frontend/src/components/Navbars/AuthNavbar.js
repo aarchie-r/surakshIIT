@@ -73,6 +73,19 @@ const AdminNavbar = () => {
                   <span className="nav-link-inner--text">Login</span>
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink className="nav-link-icon" to="/auth/secRegister" tag={Link}>
+                  <i className="ni ni-circle-08" />
+                  <span className="nav-link-inner--text">Security Register</span>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="nav-link-icon" to="/auth/seclogin" tag={Link}>
+                  <i className="ni ni-key-25" />
+                  <span className="nav-link-inner--text">Security Login</span>
+                </NavLink>
+              </NavItem>
+              
              
             </Nav>
           </UncontrolledCollapse>

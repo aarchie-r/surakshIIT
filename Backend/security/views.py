@@ -333,3 +333,42 @@ class SecurityDataView(APIView):
                 return Response(status= status.HTTP_404_NOT_FOUND)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class Login(APIView):
+    def post(self, request, *args, **kwargs):
+        user = IsloggedIN(request)
+        if user:
+            print("gg")
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        uid = request.data.get("uid","")
+        password = request.data.get("password","")
+        try:
+            user = Security.objects.get(uid = uid)
+            if user is not None:
+                if password == user.password:
+                #if CHECK_PASSWORD(password, user.password) :
+                    request.session["uid"] = uid
+                    request.session.modified = True
+                    return Response(status=status.HTTP_200_OK)
+                else:
+                    return Response({"message":"Incorrect Password"},status=status.HTTP_401_UNAUTHORIZED)
+
+        except:
+            return Response({"message":"Given UID is not registered with us"},status=status.HTTP_401_UNAUTHORIZED)
+
+
+
+
+
+
+
+   
+class Logout(APIView):
+    def post(self, request):
+        if IsloggedIN(request) is not None:
+            del request.session["uid"]
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    
+    

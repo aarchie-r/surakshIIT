@@ -37,9 +37,9 @@ import { Link } from "react-router-dom";
 import {useDispatch} from "react-redux"
 import { login } from "actions/userActions";
 
-const BACKEND_URL = "http://127.0.0.1:8000/login/"
+const BACKEND_URL = "http://127.0.0.1:8000/security/login/"
 
-const Login = () => {
+const SecLogin = () => {
 
   const [UID,setUID]=useState("");
   const [pass,setPass]=useState("");
@@ -61,7 +61,7 @@ const Login = () => {
       .post(BACKEND_URL,data)
       .then((res)=>{
         if(res.status==200){
-          dispatch(login(UID,false));
+          dispatch(login(UID,true));
         }
         
       })
@@ -146,4 +146,4 @@ const dispatch = useDispatch();
   );
 };
 
-export default Login;
+export default SecLogin;

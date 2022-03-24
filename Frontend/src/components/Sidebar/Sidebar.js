@@ -75,10 +75,10 @@ const Sidebar = (props) => {
 
   const createLinks = (routes) => {
     return routes.map((prop, key) => {
-      if(session.user.uid=="201055"){
+      if(session.user.isSecurity==true){
         if(prop.layout=="/user")return null;
       }
-      if(session.user.uid!="201055"){
+      if(session.user.isSecurity==false){
         if(prop.layout=="/admin")return null;
       }
       if(session.authenticated && prop.layout=='/auth')return null;

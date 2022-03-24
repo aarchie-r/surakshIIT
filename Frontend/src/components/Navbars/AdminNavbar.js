@@ -18,6 +18,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { sessionService } from "redux-react-session";
+import { useSelector } from "react-redux";
 // reactstrap components
 import {
   DropdownMenu,
@@ -38,13 +39,17 @@ import {
 
 const AdminNavbar = (props) => {
 
+  const session = useSelector((state) => state.session);
+
   const handleLogout= async() => {
+    console.log(session.user)
 
     axios.defaults.withCredentials = true;
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
     await axios
-     .post("http://127.0.0.1:8000/logout/",{})
+
+     .post(session.user.isSecurity?"http://127.0.0.1:8000/security/logout/":"http://127.0.0.1:8000/logout/",{})
      .then((response)=>{
         sessionService.deleteSession();
         sessionService.deleteUser();

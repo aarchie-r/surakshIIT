@@ -33,6 +33,8 @@ import AddLostItem from "views/Add_lostitem";
 import HallEntryTable from "views/Security/ViewHallEntry";
 import AddHallEntry from "views/AddHallEntry";
 import AllHallEntryTable from "views/Security/AllhallEntries";
+import Security_Register from "views/Security/Register";
+import SecLogin from "views/Security/Login";
 
 import SecProfile from "views/Security/securityProfile";
 
@@ -62,10 +64,24 @@ var routes = [
     layout: "/auth",
   },
   {
+    path: "/seclogin",
+    name: "Login",
+    icon: "ni ni-key-25 text-info",
+    component: SecLogin,
+    layout: "/auth",
+  },
+  {
     path: "/register",
     name: "Register",
     icon: "ni ni-circle-08 text-pink",
     component: Register,
+    layout: "/auth",
+  },
+  {
+    path: "/secregister",
+    name: "Security Register",
+    icon: "ni ni-circle-08 text-pink",
+    component: Security_Register ,
     layout: "/auth",
   },
   
