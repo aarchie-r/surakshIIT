@@ -81,4 +81,4 @@ class SecurityDataSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Security
-        fields=("name","email","phone","uid","gender","dp")
+        fields=("name","email","phone","uid","gender","dp","isSecurity")

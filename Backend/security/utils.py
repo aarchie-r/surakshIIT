@@ -2,7 +2,7 @@ from .models import Security
 
 def IsloggedIN(request):
     try:
-        user = Security.objects.get(uid="201055")
+        user = Security.objects.get(uid=request.session["uid"])
         # print("xyz")
         return user
     except:
@@ -19,3 +19,10 @@ def IsloggedIN(request):
     # else:
     #     print("leafkbsef")
     #     return None
+
+def isRegistered(request):
+    try:
+        user = Security.objects.get(uid=request.data["uid"])
+        return user
+    except:
+        return None

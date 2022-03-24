@@ -17,8 +17,8 @@ class Security(models.Model):
     phone = models.CharField(max_length=10,null=True)
     email = models.EmailField(max_length=256,null=True)
     dp = models.ImageField(upload_to = "profile/",blank=True,null=True)
-
-    def _str_(self):
+    isSecurity = models.BooleanField(default=True, editable=False)
+    def __str__(self):
         return self.uid
 
 

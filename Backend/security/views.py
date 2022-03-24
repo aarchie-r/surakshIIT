@@ -18,6 +18,28 @@ from .utils import *
 from rest_framework.fields import UUIDField
 
 # Create your views here.
+class Register(APIView):
+    def post(self,request,*args, **kwargs):
+        if isRegistered(request) is None:
+
+            try:
+                name = request.data.get("name","")
+                uid = request.data.get("uid","")
+                email = request.data.get("email","")
+                phone = request.data.get("phone","")
+                gender = request.data.get("gender","")
+                password = request.data.get("password","")
+                dp = request.data.get("dp","")
+                isSecurity = True
+                register = Security(name=name,uid=uid,email=email,phone=phone,gender=gender,password=password,dp=dp,isSecurity=isSecurity)
+                register.save()
+                return Response(status=status.HTTP_200_OK)
+            except:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"message":"This UID is already registered with us"},status=status.HTTP_400_BAD_REQUEST)
+
+
 
 class LostitemView(APIView):
     def get(self, request):
