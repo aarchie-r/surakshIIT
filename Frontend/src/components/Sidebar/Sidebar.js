@@ -79,7 +79,7 @@ const Sidebar = (props) => {
         if(prop.layout=="/user")return null;
       }
       if(session.user.isSecurity==false){
-        if(prop.layout=="/admin")return null;
+        if(prop.layout=="/security")return null;
       }
       if(session.authenticated && prop.layout=='/auth')return null;
       if(prop.invisible) return null;
@@ -173,7 +173,7 @@ const Sidebar = (props) => {
               <DropdownItem className="noti-title" header tag="div">
                 <h6 className="text-overflow m-0">Welcome!</h6>
               </DropdownItem>
-              <DropdownItem to="/admin/user-profile" tag={Link}>
+              <DropdownItem to="/security/user-profile" tag={Link}>
                 <i className="ni ni-single-02" />
                 <span>My profile</span>
               </DropdownItem>

@@ -41,7 +41,7 @@ const Admin = (props) => {
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (session.user.isSecurity==true && prop.layout=="/admin") {
+      if (session.user.isSecurity==true && prop.layout=="/security") {
         console.log("yaha aaya")
         return (
           <Route
@@ -87,7 +87,7 @@ const Admin = (props) => {
         {...props}
         routes={routes}
         logo={{
-          innerLink: session.user.isSecurity==true?"/admin/index":"/user/index",
+          innerLink: session.user.isSecurity==true?"/security/index":"/user/index",
           imgSrc: require("../assets/img/brand/argon-react.png").default,
           imgAlt: "...",
         }}
@@ -99,7 +99,7 @@ const Admin = (props) => {
         />
         <Switch>
           {getRoutes(routes)}
-          <Redirect from="*" to={session.user.isSecurity==true?"/admin/index":"/user/index"} />
+          <Redirect from="*" to={session.user.isSecurity==true?"/security/index":"/user/index"} />
         </Switch>
         <Container fluid>
           <AdminFooter />

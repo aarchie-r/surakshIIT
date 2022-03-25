@@ -25,7 +25,7 @@ const AllCampusExitTable =()=>{
     return (
         < >
        <br></br> <br></br> <br></br> <br></br>
-       <Link to="/admin/addcampusMovement" className="btn btn-primary">Add Campus Exit</Link>
+       <Link to="/security/addcampusMovement" className="btn btn-primary">Add Campus Exit</Link>
        <ReactTable 
        data={exitData}
        columns = {[

@@ -60,7 +60,7 @@ const Auth = (props) => {
     });
   };
   if(session.authenticated){
-    <Redirect to ={session.user.isSecurity==true?"/admin":"/user"}></Redirect>
+    <Redirect to ={session.user.isSecurity==true?"/security":"/user"}></Redirect>
   }
   
 
