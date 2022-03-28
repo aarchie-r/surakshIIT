@@ -34,10 +34,13 @@ import {
 
   } from "reactstrap";
   import axios from "axios";
+  import { useHistory } from "react-router-dom";
 
-  const BACKEND_URL = "http://127.0.0.1:8000/security/add_campusexit/"
+  const BACKEND_URL = "http://127.0.0.1:8000/security/"
   
   const CampusExit = () => {
+
+    let history = useHistory();
     
     const [uid, setUID] = useState("");
     const [destination, setDestination] = useState("");
@@ -57,10 +60,13 @@ import {
         axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         
         await axios 
-        .post(BACKEND_URL,data)
+        .post(BACKEND_URL+"add_campusexit/",data)
         .then(()=>{
           alert("Exit Data Submitted")
           ;
+          // history.pop("add_campusexit/");
+          console.log(history);
+          history.push("campusMovement/"); 
         })
         .catch(()=>alert("Misleading UID given"))
         console.log("kjdb")

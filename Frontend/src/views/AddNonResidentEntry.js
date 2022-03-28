@@ -34,11 +34,13 @@ import {
 
   } from "reactstrap";
   import axios from "axios";
-  import Select from 'react-select'
+  import Select from 'react-select';
+  import { useHistory } from "react-router-dom";
 
-  const BACKEND_URL = "http://127.0.0.1:8000/security/add_nonresident_campusentry/"
+  const BACKEND_URL = "http://127.0.0.1:8000/security/"
   
   const NonResidentCampusEntry = () => {
+    let history = useHistory();
     const [name, setName] = useState("");
     const [concerned, setConcerned] = useState("");
     const [reason, setReason] = useState("");
@@ -69,8 +71,14 @@ import {
         axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         
         await axios 
-        .post(BACKEND_URL,data)
-        .then(()=>alert("Entry Data Submitted"))
+        .post(BACKEND_URL+"add_nonresident_campusentry/",data)
+        .then(()=>{
+          alert("Entry Data Submitted")
+          ;
+          // history.pop("add_campusexit/");
+          console.log(history);
+          history.push("nonResidentcampusMovement/"); 
+        })
         .catch(()=>alert("Misleading UID given"))
     }
   }

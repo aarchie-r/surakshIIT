@@ -15,10 +15,12 @@ import {
 
   } from "reactstrap";
   import axios from "axios";
+  import { useHistory } from "react-router-dom";
 
   const BACKEND_URL = "http://127.0.0.1:8000/security/add_hallentry/"
   
   const AddHallEntry = () => {
+    let history = useHistory();
     
     const [UID1, setUID1] = useState("");
     const [UID2, setUID2] = useState("");
@@ -42,7 +44,13 @@ import {
 
         await axios 
         .post(BACKEND_URL,data)
-        .then(()=>alert("Entry Data Submitted"))
+        .then(()=>{
+          alert("Entry Data Submitted")
+          ;
+          // history.pop("add_campusexit/");
+          console.log(history);
+          history.push("hallMovement/"); 
+        })
         .catch((err)=>alert(err))
     }
   }
