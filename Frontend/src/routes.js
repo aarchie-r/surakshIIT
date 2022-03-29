@@ -93,13 +93,7 @@ var routes = [
     layout: "/security",
     invisible: true
   },
-  {
-    path: "/campusMovement",
-    name: "CampusMovement",
-    icon: "ni ni-istanbul text-blue",
-    component: CampusExitTable,
-    layout: "/security",
-  },
+  
   {
     path: "/hallMovement",
     name: "Hall Movement",
@@ -168,6 +162,13 @@ var routes = [
     component: AllCampusExitTable,
     layout: "/security",
     invisible: true
+  },
+  {
+    path: "/campusMovement",
+    name: "CampusMovement",
+    icon: "ni ni-istanbul text-blue",
+    component: CampusExitTable,
+    layout: "/security",
   },
   {
     path: "/nonResidentcampusMovement",

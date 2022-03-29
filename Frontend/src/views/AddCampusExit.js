@@ -69,7 +69,7 @@ import {
           history.push("campusMovement/"); 
         })
         .catch(()=>alert("Misleading UID given"))
-        console.log("kjdb")
+        
         setUID("");
         setDestination("")
     }

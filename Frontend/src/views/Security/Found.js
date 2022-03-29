@@ -73,6 +73,7 @@ const FoundItemList = () =>{
                 <CardGroup>
                     {FoundItems.map((item, key)=>{
                         return (
+                            <Col xs="4">
                             <Card className="mx-3 my-3" key={key}>
                             <CardImg variant="top" src={"http://127.0.0.1:8000"+ item.image} alt="item pic"></CardImg>
                                 <CardBody>
@@ -85,12 +86,14 @@ const FoundItemList = () =>{
                                 </CardBody>
                                 <CardFooter>
                                 <small>Found location : {item.where_found}</small><br></br>
-                                <small>Found time : {item.found_time}</small>
+                                <small>Found date : {item.found_time.slice(0,10)}</small><br></br>
+                                <small>Found time : {item.found_time.slice(11,16)}</small>
                                 <Button className="float-right" bsStyle="success" bsSize="small" onClick={(e)=>(handleClick(key))}>
                                     Returned
                                 </Button>
                                 </CardFooter>
                             </Card>
+                            </Col>
                         )
                     })}
                     

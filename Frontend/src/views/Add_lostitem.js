@@ -26,11 +26,15 @@ import {
   InputGroupButtonDropdown,
 } from "reactstrap";
 
+import { useHistory } from "react-router-dom";
+
 const Backend_URL='http://127.0.0.1:8000/'
 
 const AddLostItem = () =>{
 
   const session = useSelector((state) => state.session);
+
+  let history = useHistory();
 
 
 
@@ -64,7 +68,10 @@ const AddLostItem = () =>{
         .post(session.user.isSecurity?(Backend_URL+"security/add_lost/"):(Backend_URL+"lost_found/add_lost/"),form_data,{headers: {
           'content-type': 'multipart/form-data'
         }})
-        .then(()=>alert("item Added"))
+        .then(()=>{
+          alert("item Added");
+          history.push (session.isSecurity?("index/"):("lostItems/")); 
+        })
         .catch((err)=>alert(err))
     }
   }
@@ -81,7 +88,7 @@ const AddLostItem = () =>{
                     <h3>Give some details-</h3>
                   </CardText>
                   <Form>
-                    <Col className="order-xl-1" xl="10">
+                    <Col className="order-xl-1" xs="10">
                       <Card className="bg-secondary shadow">
                           <CardHeader className="bg-white border-0">
                               <Row className="align-items-center">

@@ -31,6 +31,7 @@ const Backend_URL = "http://127.0.0.1:8000/security/"
 const LostItemList = () =>{
     const[LostItems, setLostItems] = useState([]);
 
+
     const handleClick = async(key) =>{
         console.log(key);
         console.log(LostItems[key].id);
@@ -73,6 +74,7 @@ const LostItemList = () =>{
                 <CardGroup>
                     {LostItems.map((item, key)=>{
                         return (
+                            <Col xs="4">
                             <Card className="mx-3 my-3" key={key}>
                             <CardImg variant="top" src={"http://127.0.0.1:8000"+item.image} alt="item pic"></CardImg>
                                 <CardBody>
@@ -85,12 +87,14 @@ const LostItemList = () =>{
                                 </CardBody>
                                 <CardFooter>
                                 <small>Last seen location : {item.last_seen}</small><br></br>
-                                <small>Lost time : {item.lost_time}</small>
+                                <small>Lost date : {item.lost_time.slice(0,10)}</small><br></br>
+                                <small>Lost time: {item.lost_time.slice(11,16)}</small>
                                 <Button className="float-right" bsStyle="success" bsSize="small" onClick={(e)=>(handleClick(key),console.log(key))}>
                                     Found
                                 </Button>
                                 </CardFooter>
                             </Card>
+                            </Col>
                         )
                     })}
                     

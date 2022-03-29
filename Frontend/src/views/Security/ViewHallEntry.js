@@ -11,7 +11,7 @@ const HallEntryTable =()=>{
     const [entryData,setEntryData]=useState([]);
 
     const handleClick = async(key) =>{
-        console.log(key);
+
         
 
         await axios
@@ -70,11 +70,18 @@ const HallEntryTable =()=>{
           Header: "Destination",
           accessor: "destination"
         },
+        {
+          Header: "Entry Date",
+          accessor: "entry_time",
+          Cell: props=><span className="date">{props.value.slice(0,10)}</span>
+        },
 
         {
           Header: "Entry Time",
-          accessor: "entry_time"
+          accessor: "entry_time",
+          Cell: props=><span className="date">{props.value.slice(11,16)}</span>
         },
+        
         {
           Header: "Update",
           Cell: ({row})=> <div><button onClick={(e)=>handleClick(row._index)}>Returned</button></div>

@@ -63,9 +63,15 @@ const CampusExitTable =()=>{
             accessor: "destination"
         },
         {
-          Header: "Exit Time",
-          accessor: "exit_time"
+          Header: "Exit Date",
+          accessor: "exit_time",
+          Cell: props=><span className="date">{props.value.slice(0,10)}</span>
         },
+        {
+            Header: "Exit Time",
+            accessor: "exit_time",
+            Cell: props=><span className="date">{props.value.slice(11,16)}</span>
+          },
         {
           Header: "Update",
           Cell: ({row})=> <div><button onClick={(e)=>handleClick(row._index)}>Returned</button></div>

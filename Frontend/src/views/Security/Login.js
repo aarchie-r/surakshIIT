@@ -91,7 +91,7 @@ const dispatch = useDispatch();
         <Card >
           <CardBody className="px-lg-5 py-lg-5">
             <div className="text-center text-muted mb-4">
-              <small>log in with credentials</small>
+              <small>Security Login</small>
             </div>
             <Form role="form">
               <FormGroup className="mb-3">

@@ -25,6 +25,8 @@ import {
   InputGroupButtonDropdown,
 } from "reactstrap";
 
+import { useHistory } from "react-router-dom";
+
 const Backend_URL='http://127.0.0.1:8000/security/add_found/'
 
 const AddFoundItem = () =>{
@@ -34,6 +36,8 @@ const AddFoundItem = () =>{
   const [PersonFound, setPersonFound] = useState("");
   const [Details, setDetails] = useState("");
   const [Image, setImage] = useState(null);
+
+  let history = useHistory();
 
   const handleSubmit = async() =>{
     
@@ -67,7 +71,10 @@ const AddFoundItem = () =>{
         .post(Backend_URL,form_data,{headers: {
           'content-type': 'multipart/form-data'
         }})
-        .then(()=>alert("item Added"))
+        .then(()=>{
+          alert("item Added");
+          history.push("foundItems/"); 
+        })
         .catch(()=>alert("An error ocurred"))
     }
   }

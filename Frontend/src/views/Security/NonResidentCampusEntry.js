@@ -80,8 +80,10 @@ const NonResidentCampusEntryTable =()=>{
                 accessor: "vehicle"
             },
              {
-                 Header: "Entry Time",
-                 accessor: "entry_time"
+                 Header: "Entry Date and Time",
+                 accessor: "entry_time",
+                 Cell: props=><span className="date">{props.value.slice(0,10)} {props.value.slice(11,16)}</span>
+                
              },
              {
                 Header: "Submit Exit",

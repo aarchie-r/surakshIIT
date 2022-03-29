@@ -99,6 +99,8 @@ const Register = () => {
                       }
                     />
         </div>
+        
+        <center><span style={{color:"white"}}>User Register</span></center>
         <Card className="bg-secondary shadow border-0">
           {}
           <CardBody className="px-lg-5 py-lg-5">

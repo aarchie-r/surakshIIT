@@ -97,7 +97,7 @@ const AdminNavbar = (props) => {
                   </span>
                   
                   <Media className="ml-2 d-none d-lg-block">
-                    <span className="mb-0 text-sm font-weight-bold">
+                    <span className="mb-0 text-sm font-weight-bold" style={{color:"red"}}>
                       Logout
                     </span>
                   </Media>
@@ -110,7 +110,7 @@ const AdminNavbar = (props) => {
                 
                 <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
                   <i className="ni ni-user-run" />
-                  <span onClick={handleLogout}>Logout</span>
+                  <span onClick={handleLogout} style={{color:"black"}}>Logout</span>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

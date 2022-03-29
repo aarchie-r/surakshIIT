@@ -61,12 +61,19 @@ const AllHallEntryTable =()=>{
         },
 
         {
+          Header: "Entry Date",
+          accessor: "entry_time",
+          Cell: props=><span className="date">{props.value.slice(0,10)}</span>
+        },
+        {
           Header: "Entry Time",
-          accessor: "entry_time"
+          accessor: "entry_time",
+          Cell: props=><span className="date">{props.value.slice(11,16)}</span>
         },
         {
             Header: "Exit Time",
-            accessor: "exit_time"
+            accessor: "exit_time",
+            Cell: props=><span className="date">{props.value==null?"":props.value.slice(11,16)}</span>
           },
         
       

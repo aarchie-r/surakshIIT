@@ -38,12 +38,19 @@ const AllCampusExitTable =()=>{
             accessor: "destination"
         },
         {
-          Header: "Exit Time",
-          accessor: "exit_time"
+          Header: "Exit Date",
+          accessor: "exit_time" ,
+          Cell: props=><span className="date">{props.value.slice(0,10)}</span>
         },
         {
+            Header: "Exit Time",
+            accessor: "exit_time" ,
+            Cell: props=><span className="date">{props.value.slice(11,16)}</span>
+          },
+        {
             Header: "Entry Time",
-            accessor: "entry_time"
+            accessor: "entry_time",
+            Cell: props=><span className="date">{props.value==null?"":props.value.slice(11,16)}</span>
           },
         
     ]}
