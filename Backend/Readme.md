@@ -29,9 +29,56 @@ Status : {
          }
            
 ```
+
+### Security Register
+```
+URL: /security/register
+
+Method :  POST 
+
+Data : {  
+             name ,
+             uid,
+             email ,
+             phone,                      
+             gender,           
+             password,          
+             dp
+        } 
+             
+              
+
+Status : {
+             If successfull : 200_OK 
+             Else : 400_Bad Request(Already Registered / some required data is missing)
+         }
+           
+```
 ### Login
 ```
 URL: /login
+
+Method :  POST 
+
+Data : {  
+           uid,
+           password
+       } 
+             
+              
+
+Status : {
+            If successfull : 200 OK 
+            Else : {
+                     400_Bad Request(Already Loggedin)
+                     401_Unauthorized(Wrong Password/ Not registered)
+                   }
+         }
+           
+```
+### Security Login
+```
+URL: /security/login
 
 Method :  POST 
 
