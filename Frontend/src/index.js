@@ -46,8 +46,7 @@ sessionService.initSessionService(store, options)
     const session = useSelector((state) => state.session);
     const [iflogged,setiflogged]=useState(false);
     
-    
-    console.log(session.user.uid);
+  
     return (
       <BrowserRouter>
         <Switch>

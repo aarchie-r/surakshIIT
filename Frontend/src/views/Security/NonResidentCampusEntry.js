@@ -23,8 +23,7 @@ const NonResidentCampusEntryTable =()=>{
     ]
 
     const handleClick = async(key) =>{
-        console.log(key);
-        
+     
 
         await axios
         .put(BACKEND_URL+"add_nonresident_campusexit/", {

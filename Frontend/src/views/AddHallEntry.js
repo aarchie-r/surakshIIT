@@ -48,7 +48,7 @@ import {
           alert("Entry Data Submitted")
           ;
           // history.pop("add_campusexit/");
-          console.log(history);
+          
           history.push("hallMovement/"); 
         })
         .catch((err)=>alert(err))
@@ -142,7 +142,7 @@ import {
                               <br></br>
                               <select value={Hall} onChange={(e)=>{
                                   e.preventDefault();
-                                  console.log(e.target.value);
+                                  
                                   setHall(e.target.value);
                               }}>
                               <option value= "1">Hall 1</option>

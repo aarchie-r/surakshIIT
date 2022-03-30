@@ -28,7 +28,7 @@ const AllNonResidentCampusEntryTable =()=>{
         await axios
         .get(BACKEND_URL+"all_nonresident_campusentries/")
         .then((result)=>{
-            console.log(result.data.data)
+            
             setEntryData(result.data.data);
                
         })

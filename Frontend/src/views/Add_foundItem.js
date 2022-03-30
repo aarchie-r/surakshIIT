@@ -196,7 +196,7 @@ const AddFoundItem = () =>{
                                       className="form-control-alternative"
                                       onChange={(event) => {
                                       event.preventDefault();
-                                      console.log(event.target.files[0]);
+                                     
                                         setImage(event.target.files[0]);
                                         
                                         }}

@@ -42,7 +42,6 @@ const Admin = (props) => {
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (session.user.isSecurity==true && prop.layout=="/security") {
-        console.log("yaha aaya")
         return (
           <Route
             path={prop.layout + prop.path}

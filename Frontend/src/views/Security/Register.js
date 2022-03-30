@@ -215,7 +215,7 @@ import {
                   </label><br></br>
                   <select value={gender} onChange={(e) => {
                     e.preventDefault();
-                    console.log(e.target.value);
+                  
                     setGENDER(e.target.value);
                   }}>
                     <option >--select--</option>

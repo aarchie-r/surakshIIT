@@ -33,8 +33,6 @@ const LostItemList = () =>{
 
 
     const handleClick = async(key) =>{
-        console.log(key);
-        console.log(LostItems[key].id);
 
         await axios
         .delete(Backend_URL+"delete_lost/", {data:{

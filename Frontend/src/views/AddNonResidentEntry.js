@@ -76,7 +76,7 @@ import {
           alert("Entry Data Submitted")
           ;
           // history.pop("add_campusexit/");
-          console.log(history);
+          
           history.push("nonResidentcampusMovement/"); 
         })
         .catch(()=>alert("Misleading UID given"))
@@ -210,7 +210,7 @@ import {
                               </label><br></br>
                               <select value={id_document} onChange={(e)=>{
                                   e.preventDefault();
-                                  console.log(e.target.value);
+                                  
                                   setIdDocument(e.target.value);
                               }}>
                               <option value= "1">Aadhar Card</option>

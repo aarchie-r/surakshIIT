@@ -64,8 +64,7 @@ import {
         .then(()=>{
           alert("Exit Data Submitted")
           ;
-          // history.pop("add_campusexit/");
-          console.log(history);
+        
           history.push("campusMovement/"); 
         })
         .catch(()=>alert("Misleading UID given"))

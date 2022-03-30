@@ -42,7 +42,7 @@ const AdminNavbar = (props) => {
   const session = useSelector((state) => state.session);
 
   const handleLogout= async() => {
-    console.log(session.user)
+ 
 
     axios.defaults.withCredentials = true;
     axios.defaults.xsrfCookieName = 'csrftoken'
