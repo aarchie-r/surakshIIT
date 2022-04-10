@@ -1,4 +1,22 @@
 # surakshIIT_Backend
+## How to run
+
+* Make sure you have django installed.
+
+Give the following commands to start the backend server.
+
+` python3 manage.py makemigrations user security lost_found campus_movement hall_movement `
+
+makemigrations is responsible for creating new migrations based on the changes we
+have made in our models. We need to run this command in the terminal after making
+any change in any of the models file .
+
+` python3 manage.py migrate `
+
+migrate is responsible for applying changes made by makemigrations to our database
+schema.
+
+` python3 manage.py runserver`
 
 ## API Endpoints
 
