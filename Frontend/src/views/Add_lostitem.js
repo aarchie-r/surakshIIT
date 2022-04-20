@@ -72,7 +72,7 @@ const AddLostItem = () =>{
           alert("item Added");
           history.push (session.isSecurity?("index/"):("lostItems/")); 
         })
-        .catch((err)=>alert(err))
+        .catch((err)=>alert((err.response.data.message)))
     }
   }
 

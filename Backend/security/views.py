@@ -35,7 +35,7 @@ class Register(APIView):
                 register.save()
                 return Response(status=status.HTTP_200_OK)
             except:
-                return Response(status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message":"Something went wrong"},status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({"message":"This UID is already registered with us"},status=status.HTTP_400_BAD_REQUEST)
 
@@ -72,7 +72,7 @@ class AddLostItemView(APIView):
                 lost_item.save()
                 return Response(status=status.HTTP_201_CREATED)
             except:
-                return Response(status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message":"Given UID is not registered with us"},status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(status= status.HTTP_401_UNAUTHORIZED) 
 
@@ -93,9 +93,7 @@ class AddFoundItemView(APIView):
         security = IsloggedIN(request)
 
         if security:
-            serializer = AddFoundItemSerializer
-            serializer_data = serializer(data=request.data)
-            if serializer_data.is_valid():
+            try:
                 found_item= Found_item(
                 name = request.data["name"],
                 details=request.data["details"],
@@ -108,8 +106,8 @@ class AddFoundItemView(APIView):
                 )
                 found_item.save()
                 return Response(status=status.HTTP_201_CREATED)
-            else:
-                return Response(status=status.HTTP_400_BAD_REQUEST)
+            except:
+                return Response({"message":"Given UID is not registered with us"},status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(status= status.HTTP_401_UNAUTHORIZED)
 
@@ -153,15 +151,36 @@ class AddHallEntryView(APIView):
                 entry = Entry(
                     person1 = CampusJunta.objects.get(uid=request.data["person1"]),
                     person2 = CampusJunta.objects.get(uid=request.data["person2"]),
+
                     destination = request.data["destination"],
                     entry_time = datetime.now(),
                     hall = request.data["hall"],
                     if_exited = False
+                    
                 )
-                entry.save()
-                return Response(status=status.HTTP_201_CREATED)
+                if("Hall-"+str(entry.hall) ==entry.person2.address):
+                    if(entry.person1.isInDiffHall == False ):
+                        if(entry.person1.isOutOfCampus == False):
+                            if(entry.person2.isOutOfCampus== False):   
+                                person = CampusJunta.objects.get(uid=request.data["person1"])
+                                person.isInDiffHall = True
+                                person.save()
+                                entry.save()
+                                return Response(status=status.HTTP_201_CREATED)
+                            else:
+                                return Response({"message":"The host has made a campusExit"},status=status.HTTP_400_BAD_REQUEST)
+                        else:
+                            return Response({"message":"The person has made a campusExit"},status=status.HTTP_400_BAD_REQUEST)
+
+                    else:
+                        return Response({"message":"The person has already made an entry in another hall"},status=status.HTTP_400_BAD_REQUEST)
+
+                else:
+                    print("Hall-"+str(entry.hall))
+                    print(entry.person2.address)
+                    return Response({"message":"Host is not a resident of selected hall"},status=status.HTTP_400_BAD_REQUEST)
             except:
-                return Response(status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message":"Given UIDs are not registered with us"},status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
@@ -176,6 +195,9 @@ class AddHallExitView(APIView):
                 data.exit_time = datetime.now()
                 data.if_exited = True
                 data.save(update_fields=['exit_time','if_exited'])
+                person = CampusJunta.objects.get(uid=data.person1)
+                person.isInDiffHall = False
+                person.save()
                 return Response(status=status.HTTP_200_OK)
             except:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -215,10 +237,19 @@ class AddCampusExitView(APIView):
                     exit_time= datetime.now(),
 
                 )
-                exit.save()
-                return Response(status=status.HTTP_201_CREATED)
+                if(exit.person.isOutOfCampus==False):
+                    exit.save()
+                    person = CampusJunta.objects.get(uid=request.data["person"])
+                    person.isOutOfCampus = True
+                    person.save()
+                    return Response(status=status.HTTP_201_CREATED)
+                    
+                    
+                else:
+                    return Response({"message":"the person is already out of campus"},status=status.HTTP_400_BAD_REQUEST)
+                    
             except:
-                return Response(status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message":"Given UID is not registered with us"},status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(status= status.HTTP_401_UNAUTHORIZED)
 
@@ -229,12 +260,15 @@ class AddCampusEntryView(APIView):
         if(security):
             try:
                 data = Exit.objects.get(id=request.data["id"])
+                person = CampusJunta.objects.get(uid= data.person)
+                person.isOutOfCampus = False
+                person.save()
                 data.entry_time = datetime.now()
                 data.if_entered = True
                 data.save(update_fields=['entry_time','if_entered'])
                 return Response(status=status.HTTP_200_OK)
             except:
-                return Response(status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message":"Given UID is not registered with us"},status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(status= status.HTTP_401_UNAUTHORIZED)
 
@@ -302,7 +336,7 @@ class AddNonResidentCampusEntryView(APIView):
                 entry.save()
                 return Response(status=status.HTTP_201_CREATED)
             except:
-                return Response(status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message":"Given UID is not registered with us"},status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(status= status.HTTP_401_UNAUTHORIZED)  
 

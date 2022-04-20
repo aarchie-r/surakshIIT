@@ -18,6 +18,8 @@ class CampusJunta(models.Model):
     password = models.CharField(max_length=100)
     dp = models.ImageField(upload_to = "profile/",blank=True)
     isSecurity = models.BooleanField(default=False, editable=False)
+    isInDiffHall=  models.BooleanField(default=False, editable=True)
+    isOutOfCampus= models.BooleanField(default=False, editable=True)
 
     def __str__(self):
         return self.uid

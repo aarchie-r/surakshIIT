@@ -75,7 +75,7 @@ const AddFoundItem = () =>{
           alert("item Added");
           history.push("foundItems/"); 
         })
-        .catch(()=>alert("An error ocurred"))
+        .catch((err)=>alert((err.response.data.message)))
     }
   }
 

@@ -62,7 +62,7 @@ import {
           id_document: id_document,
           id_number: id_number
       }
-      if(name=="" | concerned=="") {
+      if(name=="" | concerned=="" | id_number=="" | reason=="") {
         alert(("Fill in the required details"))
       }
       else{

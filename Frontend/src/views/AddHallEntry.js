@@ -51,7 +51,7 @@ import {
           
           history.push("hallMovement/"); 
         })
-        .catch((err)=>alert(err))
+        .catch((err)=>alert((err.response.data.message)))
     }
   }
 

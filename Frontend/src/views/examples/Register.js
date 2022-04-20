@@ -190,27 +190,28 @@ const Register = () => {
               </FormGroup>
 
               <FormGroup>
-                <InputGroup className="input-group-alternative mb-3">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                    <i className="ni ni-badge" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    
-                    placeholder="Room Number"
+                <label
+                  className="form-control-label"
+                  htmlFor="Gender"
+                >
+                  Gender
+                </label><br></br>
+                <select value={gender} onChange={(e) => {
+                  e.preventDefault();
+                
+                  setGENDER(e.target.value);
+                }}>
+                  <option >--select--</option>
+                  <option value="1">Male</option>
+                  <option value="2">Female</option>
+                  <option value="3">Rather Not Say</option>
 
-                    onChange={(event) => {
-                      event.preventDefault();
-                      setROOMNO(event.target.value);
-                    }}
-                    id="room_no"
-                    type="text"
-                  />
-                </InputGroup>
+                </select>
               </FormGroup>
 
-              <FormGroup>
+              
+
+              {/* <FormGroup>
                 <InputGroup className="input-group-alternative mb-3">
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
@@ -229,9 +230,60 @@ const Register = () => {
                     type="text"
                   />
                 </InputGroup>
+              </FormGroup> */}
+
+              <FormGroup>
+                
+                <label
+                  className="form-control-label"
+                  htmlFor="Address"
+                >
+                  Address
+                </label><br></br>
+                <select value={address} onChange={(e) => {
+                  e.preventDefault();
+                
+                  setADDRESS(e.target.value);
+                }}>
+                  
+                  <option>---select---</option>
+                  <option value="Hall-1">Hall-1</option>
+                  <option value="Hall-2">Hall-2</option>
+                  <option value="Hall-3">Hall-3</option>
+                  <option value="Hall-4">Hall-4</option>
+                  <option value="Hall-5">Hall-5</option>
+                  <option value="Hall-6">Hall-6</option>
+                  <option value="Hall-7">Hall-7</option>
+                  <option value="Hall-8">Hall-8</option>
+                  <option value="Hall-9">Hall-9</option>
+                  <option value="Hall-10">Hall-10</option>
+                  <option value="Hall-11">Hall-11</option>
+                  <option value="Hall-12">Hall-12</option>
+                  <option value="Hall-13">Hall-13</option>
+
+                </select>
               </FormGroup>
 
-              
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                    <i className="ni ni-badge" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    
+                    placeholder="Room Number (e.g. B-404)"
+
+                    onChange={(event) => {
+                      event.preventDefault();
+                      setROOMNO(event.target.value);
+                    }}
+                    id="room_no"
+                    type="text"
+                  />
+                </InputGroup>
+              </FormGroup>              
 
               <FormGroup>
                 <InputGroup className="input-group-alternative">
@@ -275,25 +327,7 @@ const Register = () => {
                 </InputGroup>
               </FormGroup>
 
-              <FormGroup>
-                <label
-                  className="form-control-label"
-                  htmlFor="Gender"
-                >
-                  Gender
-                </label><br></br>
-                <select value={gender} onChange={(e) => {
-                  e.preventDefault();
-                
-                  setGENDER(e.target.value);
-                }}>
-                  <option >--select--</option>
-                  <option value="1">Male</option>
-                  <option value="2">Female</option>
-                  <option value="3">Rather Not Say</option>
-
-                </select>
-              </FormGroup>
+              
 
               <FormGroup>
                 <label className="form-control-label" htmlFor="input-pic">Image</label>

@@ -52,10 +52,11 @@ class Register(APIView):
                 dp = request.data.get("dp","")
                 isSecurity = False
                 register = CampusJunta(name=name,uid=uid,email=email,phone=phone,room_no=room_no,address=address,gender=gender,password=password,dp=dp,isSecurity = isSecurity)
-                register.save()
+                
                 if password == re_password:
                     myuser = User.objects.create_user(username = name,email = email, password=password)
                     myuser.save()
+                    register.save()
                     return Response(status=status.HTTP_200_OK)
                 else:
                     return Response(status=status.HTTP_401_UNAUTHORIZED)

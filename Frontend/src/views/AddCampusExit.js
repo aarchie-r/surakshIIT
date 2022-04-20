@@ -67,7 +67,7 @@ import {
         
           history.push("campusMovement/"); 
         })
-        .catch(()=>alert("Misleading UID given"))
+        .catch((err)=>alert((err.response.data.message)))
         
         setUID("");
         setDestination("")
