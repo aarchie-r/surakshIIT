@@ -74,11 +74,12 @@ const Profile = () => {
                   <div className="card-profile-image">
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
                       <img
-                        alt="..."
+                        
                         className="rounded-circle"
-                        src={
-                          "http://127.0.0.1:8000"+userData.dp
-                        }
+                       
+                        src={userData.dp==null? "https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-e1513291410505.jpg/":"http://127.0.0.1:8000"+userData.dp }
+                        alt="Image"
+                        
                       />
                     </a>
                   </div>
