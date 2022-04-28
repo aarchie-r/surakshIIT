@@ -1,7 +1,10 @@
 # surakshIIT_Backend
 ## How to run
 
-* Make sure you have django installed.
+* Make sure you have python and pip installed in your system
+* Now run this command in terminal ```pip install requirements.txt```
+
+Now we can move forward
 
 Give the following commands to start the backend server.
 
