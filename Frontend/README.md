@@ -10,7 +10,9 @@
 * Run ``` npm install ```
 * After that run ```npm start```
 
+After this frontend will open in browser, you need to change the domain it
 
+Run the project on http://127.0.0.1:3000/
 
 
 
