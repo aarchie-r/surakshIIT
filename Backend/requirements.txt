@@ -1,0 +1,5 @@
+Django
+Pillow
+django-cors-headers
+djangorestframework
+bcrypt
